@@ -39,7 +39,7 @@ layout = html.Div([html.Div([html.H1("Maps"),
 @app.callback(
     Output("my-graph", "figure"),
     [Input("map-type", "value")])
-def update_graph(type):
+def update_graph(map_type):
     trace1 = [go.Scattermapbox(lat=df_airports["lat"], lon=df_airports["long"], mode='markers', hoverinfo='text',
                                marker={'symbol': "airport", 'size': 8}, text=df_airports['airport'])]
     layout1 = go.Layout(title=f'Airport locations', autosize=True, hovermode='closest', showlegend=False, height=550,
@@ -92,15 +92,13 @@ def update_graph(type):
                                                                                   type="orthographic"), showland=True,
                                                                               landcolor='rgb(243, 243, 243)',
                                                                               countrycolor='rgb(204, 204, 204)', ), )
-    if type == "Scatter Plots on Mapbox":
+    if map_type == "Scatter Plots on Mapbox":
         return {"data": trace1, "layout": layout1}
-    elif type == "Choropleth Maps":
+    elif map_type == "Choropleth Maps":
         return {"data": trace2, "layout": layout2}
-    elif type == "Scatter Plots on Maps":
+    elif map_type == "Scatter Plots on Maps":
         return {"data": [trace3], "layout": layout3}
-    elif type == "Bubble Maps":
+    elif map_type == "Bubble Maps":
         return {"data": trace4, "layout": layout4}
     else:
         return {"data": [trace3] + trace, "layout": layout5}
-
-

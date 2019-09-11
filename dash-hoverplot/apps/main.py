@@ -56,24 +56,24 @@ layout = html.Div([
     dash.dependencies.Output("my-graph", "figure"),
     [dash.dependencies.Input("select-state", "value"), dash.dependencies.Input("select-year", "value"),
      dash.dependencies.Input("hover-text", "on"), dash.dependencies.Input("hover-format", "value")])
-def update_graph(state, year, text, format):
+def update_graph(state, year, text, hoverformat):
     dff = df[df["StateName"] == state]
     df_year = dff[(dff["ReportYear"] >= year[0]) & (dff["ReportYear"] <= year[1])]
     trace = go.Scatter(x=dff["CountyName"], y=df_year['Value'], mode='markers',
                        marker={"color": "#fc8d59", "size": 10, "line": {"color": "#e34a33", "width": 0.5}}, )
-    layout = go.Layout(title="Air Quality vs County Name",
-                       yaxis={"title": "Concentrations of PM2.5 (micrograms/cu.m)", "hoverformat": format},
-                       xaxis={"title": "County Names"})
+    layout_go = go.Layout(title="Air Quality vs County Name",
+                          yaxis={"title": "Concentrations of PM2.5 (micrograms/cu.m)", "hoverformat": hoverformat},
+                          xaxis={"title": "County Names"})
     figure = {"data": [trace], "layout": layout}
     if text:
         # noinspection PyTypeChecker
         trace.update(go.Scatter(hoverinfo='x + y'))
         # noinspection PyTypeChecker
-        layout.update(go.Layout(hovermode="closest", ))
+        layout_go.update(go.Layout(hovermode="closest", ))
         return figure
     else:
         # noinspection PyTypeChecker
-        layout.update(go.Layout(hovermode=False, ))
+        layout_go.update(go.Layout(hovermode=False, ))
         return figure
 
 

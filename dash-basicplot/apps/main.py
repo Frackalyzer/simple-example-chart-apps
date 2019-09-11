@@ -51,10 +51,10 @@ def update_graph(x_axis, y_axis, plot):
     layout3 = go.Layout(title=f"{plot}", xaxis={"title": "Diabetes Outcome"}, yaxis={"title": f"{text[y_axis]}"})
     trace4 = go.Bar(x=df[x_axis], y=df["Outcome"].unique(), orientation='h', marker={"color": "#54770D"}, width=0.3,)
     layout4 = go.Layout(title=f"{plot}", xaxis={"title": f"{text[x_axis]}"}, yaxis={"title": f"Diabetes Outcome"})
-    list = []
+    list1 = []
     for i in df.columns[0:8]:
-        list.append(df[i].mean())
-    trace5 = go.Pie(labels=df.columns[0:8], values=list)
+        list1.append(df[i].mean())
+    trace5 = go.Pie(labels=df.columns[0:8], values=list1)
     layout5 = go.Layout(title=f"{plot}")
     trace6 = go.Table(header={"values": [x_axis, y_axis], "fill": {"color": "#008366"}, "align": ['left', 'center'], },
                       cells={"values": [df[x_axis], df[y_axis]], "fill": {"color": "#84FEE3"}, "align": ['left', 'center'], })

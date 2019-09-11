@@ -35,11 +35,11 @@ def update_figure(selected_1, selected_2):
     trace2 = go.Scatter(x=df["DATE"], y=df[selected_2], name=selected_2, yaxis="y2", xaxis='x', mode='lines',
                         marker={"size": 8}, opacity=0.7)
     traces = [trace1, trace2]
-    layout = go.Layout(title=f"Rainfall for {selected_1} and {selected_2}", margin={"l": 100, "r": 100},
-                       colorway=["#287D95", "#EF533B"], legend={"x": 0.7, "y": 1, 'orientation': "h"},
-                       yaxis={'title': f'Rainfall (mm)  for {selected_1}', "range": [0, 300]},
-                       yaxis2={'title': f'Rainfall (mm)  for {selected_2}', 'overlaying': 'y', 'side': 'right',
-                               "range": [0, 300], "showgrid": False},
-                       xaxis={"title": "Date"})
-    fig = go.Figure(data=traces, layout=layout)
+    layout_go = go.Layout(title=f"Rainfall for {selected_1} and {selected_2}", margin={"l": 100, "r": 100},
+                          colorway=["#287D95", "#EF533B"], legend={"x": 0.7, "y": 1, 'orientation': "h"},
+                          yaxis={'title': f'Rainfall (mm)  for {selected_1}', "range": [0, 300]},
+                          yaxis2={'title': f'Rainfall (mm)  for {selected_2}', 'overlaying': 'y', 'side': 'right',
+                                  "range": [0, 300], "showgrid": False},
+                          xaxis={"title": "Date"})
+    fig = go.Figure(data=traces, layout=layout_go)
     return fig

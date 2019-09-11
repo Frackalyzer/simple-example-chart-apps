@@ -45,7 +45,7 @@ def update_graph(values):
         name=col
     ) for col in values]
 
-    layout = dict(
+    layout_dict = dict(
         xaxis=dict(title='Date'),
         yaxis=dict(title='Freight Rate'),
         margin=dict(t=40),
@@ -58,4 +58,4 @@ def update_graph(values):
             showarrow=False
         )]
     )
-    return dict(data=data, layout=layout)
+    return dict(data=data, layout=layout_dict)

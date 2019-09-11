@@ -41,5 +41,5 @@ def update_graph(column):
                 "line": {"width": 2, "color": "#685000"}, "font": {"size": 15}},
         cells={"values": value_cell, "fill": {"color": "#FFE89A"}, "align": ['left', 'center'],
                "line": {"color": "#685000"}})
-    layout = go.Layout(title=f"Entry Draft", height=600)
-    return {"data": [trace], "layout": layout}
+    layout_go = go.Layout(title=f"Entry Draft", height=600)
+    return {"data": [trace], "layout": layout_go}

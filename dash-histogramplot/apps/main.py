@@ -45,11 +45,11 @@ def update_scatter(selected, hoverdata):
                                 name=sex.title(), customdata=dff[dff["Sex"] == sex]["Age"],
                                 marker={"size": 10, "line": {"color": "#25232C", "width": .5}}))
 
-    layout = go.Layout(title=f"Passenger Fare vs Age", colorway=['#fa9fb5', '#c51b8a'], hovermode='closest',
-                       xaxis={"title": "Age (years)", "range": [-2, 75], "tick0": 0, "dtick": 5, "showgrid": False, },
-                       yaxis={"title": "Passenger Fare (£)", "range": [-15, 300], "tick0": 0, "dtick": 25,
-                              "showgrid": False, }, )
-    figure1 = {"data": trace, "layout": layout}
+    layout_go = go.Layout(title=f"Passenger Fare vs Age", colorway=['#fa9fb5', '#c51b8a'], hovermode='closest',
+                          xaxis={"title": "Age (years)", "range": [-2, 75], "tick0": 0, "dtick": 5, "showgrid": False, },
+                          yaxis={"title": "Passenger Fare (£)", "range": [-15, 300], "tick0": 0, "dtick": 25,
+                                 "showgrid": False, }, )
+    figure1 = {"data": trace, "layout": layout_go}
     if hoverdata is not None:
         age = hoverdata["points"][0]['x']
         size1 = []
@@ -80,23 +80,23 @@ def update_graph(selected, hoverdata1):
     age = hoverdata1["points"][0]['customdata']
     trace = go.Histogram(x=dff["Age"], opacity=0.7, name="Male", marker={"line": {"color": "#25232C", "width": 0.2}},
                          xbins={"size": 5}, customdata=dff["Age"], )
-    layout = go.Layout(title=f"Age Distribution", xaxis={"title": "Age (years)", "showgrid": False},
-                       yaxis={"title": "Count", "showgrid": False}, )
-    figure2 = {"data": [trace], "layout": layout}
+    layout_go = go.Layout(title=f"Age Distribution", xaxis={"title": "Age (years)", "showgrid": False},
+                          yaxis={"title": "Count", "showgrid": False}, )
+    figure2 = {"data": [trace], "layout": layout_go}
 
     def create_bins(lower_bound, width, quantity):
-        bins = []
+        bins_array = []
         for low in range(lower_bound,
                          lower_bound + quantity * width + 1, width):
-            bins.append((low, low + width))
-        return bins
+            bins_array.append((low, low + width))
+        return bins_array
 
     bins = create_bins(lower_bound=0, width=5, quantity=20)
 
-    def find_bin(value, bins):
-        for i in range(0, len(bins)):
-            if bins[i][0] <= value < bins[i][1]:
-                return i
+    def find_bin(value, bins_array):
+        for ndx in range(0, len(bins_array)):
+            if bins_array[ndx][0] <= value < bins_array[ndx][1]:
+                return ndx
         return -1
 
     if hoverdata1 is not None:

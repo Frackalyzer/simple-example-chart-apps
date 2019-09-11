@@ -9,6 +9,5 @@ else:
     app_name = 'dash-3dscatterplot'
 
 layout = html.Div([
-    dcc.SyntaxHighlighter(language='python',
-                          children=open('apps/main.py', 'r').read()),
+    # dcc.SyntaxHighlighter(language='python', children=open('apps/main.py', 'r').read()),
 ])

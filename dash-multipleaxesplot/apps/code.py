@@ -8,6 +8,5 @@ else:
     app_name = 'dash-multipleaxesplot'
 
 layout = html.Div([
-    dcc.SyntaxHighlighter(language='python',
-                          children=open('apps/main.py', 'r').read()),
+    # dcc.SyntaxHighlighter(language='python', children=open('apps/main.py', 'r').read()),
 ])

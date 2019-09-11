@@ -51,11 +51,11 @@ def update_figure(selected, size_selected):
             go.Scatter(x=df[df['Indicator'] == select]['Time Period'], y=df[df['Indicator'] == select]['Data Value'],
                        mode='lines+markers', name=select, hoverinfo="name", hoverlabel={"namelength": 50},
                        marker={"size": 6, }, showlegend=False))
-    layout = go.Layout(title=f"Cases vs time", xaxis={"title": "Date"}, height=size_selected, width=2 * size_selected,
-                       yaxis={"title": f"Number of cases", "tickangle": -45, "tickfont": {"size": 10}}, autosize=True,
-                       colorway=["#003f5c", "#955196", "#dd5182", "#ff6e54", "#ffa600", "#061460"])
+    layout_go = go.Layout(title=f"Cases vs time", xaxis={"title": "Date"}, height=size_selected, width=2 * size_selected,
+                          yaxis={"title": f"Number of cases", "tickangle": -45, "tickfont": {"size": 10}}, autosize=True,
+                          colorway=["#003f5c", "#955196", "#dd5182", "#ff6e54", "#ffa600", "#061460"])
 
-    figure = {"data": traces, "layout": layout}
+    figure = {"data": traces, "layout": layout_go}
     return figure
 
 

@@ -67,7 +67,7 @@ layout = html.Div([html.Div([html.H1("Iris Species Comparison"), ], style={'text
      dash.dependencies.Input("legend", "on"), dash.dependencies.Input("position", "value"),
      dash.dependencies.Input("button", "n_clicks")],
     [dash.dependencies.State("x-value", "value"), dash.dependencies.State("y-value", "value")])
-def update_graph(x_axis, y_axis, legend, position, n_clicks, xvalue, yvalue):
+def update_graph(x_axis, y_axis, legend, position, _n_clicks, xvalue, yvalue):
     trace = []
     for name in df.Name.unique():
         dff = df[df["Name"] == name]

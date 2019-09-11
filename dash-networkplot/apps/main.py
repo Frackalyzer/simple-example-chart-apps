@@ -53,7 +53,7 @@ def update_graph(n):
         x, y = graph.node[node]['pos']
         node_trace['x'] += tuple([x])
         node_trace['y'] += tuple([y])
-    p = nx.single_source_shortest_path_length(graph, ncenter)
+    _p = nx.single_source_shortest_path_length(graph, ncenter)
     for node, adjacencies in enumerate(graph.adjacency()):
         node_trace['marker']['color'] += tuple([len(adjacencies[1])])
         node_info = 'Number of connections: ' + str(len(adjacencies[1]))

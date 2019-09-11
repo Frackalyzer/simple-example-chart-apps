@@ -89,31 +89,31 @@ layout = html.Div([
     [Input('grid-type', 'on'), Input('label-type', 'on'), Input('line-type', 'on'), Input("range1", 'value'),
      Input("range2", 'value'), Input('tick-color-picker', 'value'), Input('axes-color-picker', 'value'),
      Input('axes-font', 'value'), Input('select-hsda', 'value'), Input('length', 'value'), Input('width', 'value'), ])
-def update_figure(grid, label, line, range1, range2, tick_color, axes_color, axes_font, selected, len, width):
+def update_figure(grid, label, line, range1, range2, tick_color, axes_color, axes_font, selected, length, width):
     color1 = tick_color["hex"]
     color2 = axes_color["hex"]
     dff = df[df["HSDA"] == selected]
-    list = []
+    list1 = []
     for n in df['SPECIALTY'].unique():
         word = n.split('- ')[1]
-        list.append(word.title())
+        list1.append(word.title())
     trace1 = go.Scatter(x=df['SPECIALTY'], y=dff['PAYMENTS'], mode='markers', name="Expenses", marker={"color": "#008D00",
                                                                                                        "size": 8})
     trace2 = go.Scatter(x=df['SPECIALTY'], y=dff['PRACTITIONERS'], mode='markers', marker={"color": "#FF6262", "size": 8},
                         name="Practitioners", yaxis="y2")
-    layout = go.Layout(title="Expenditure & Number of Practitioners vs Speciality", height=600,
-                       legend={"y": 1.1, "orientation": "h"},
-                       xaxis={"showgrid": grid, "showline": line, "showticklabels": label, "tickcolor": color1,
-                              "ticklen": len - 4, "tickwidth": width - 4,
-                              "title": {"text": f"Speciality", "font": {"family": axes_font, "color": color2}},
-                              "tickmode": "array", "tickangle": 40, "tickvals": df['SPECIALTY'].unique(), "ticktext": list,
-                              "tickfont": {"size": 7}, },
-                       yaxis={"showgrid": grid, "showline": line, "showticklabels": label, "tickcolor": color1,
-                              "range": [range1[0], range1[1]], "ticklen": len, "tickwidth": width,
-                              "title": {"text": f"Expenses (CAD)", "font": {"family": axes_font, "color": color2}}},
-                       yaxis2={"showgrid": grid, "showline": line, "showticklabels": label, "tickcolor": color1,
-                               "range": [range2[0], range2[1]], "ticklen": len, "tickwidth": width,
-                               "title": {"text": f"Number of Practitioners", "font": {"family": axes_font, "color": color2}
-                                         }, "overlaying": 'y', "side": 'right'})
+    layout1 = go.Layout(title="Expenditure & Number of Practitioners vs Speciality", height=600,
+                        legend={"y": 1.1, "orientation": "h"},
+                        xaxis={"showgrid": grid, "showline": line, "showticklabels": label, "tickcolor": color1,
+                               "ticklen": length - 4, "tickwidth": width - 4,
+                               "title": {"text": f"Speciality", "font": {"family": axes_font, "color": color2}},
+                               "tickmode": "array", "tickangle": 40, "tickvals": df['SPECIALTY'].unique(), "ticktext": list1,
+                               "tickfont": {"size": 7}, },
+                        yaxis={"showgrid": grid, "showline": line, "showticklabels": label, "tickcolor": color1,
+                               "range": [range1[0], range1[1]], "ticklen": length, "tickwidth": width,
+                               "title": {"text": f"Expenses (CAD)", "font": {"family": axes_font, "color": color2}}},
+                        yaxis2={"showgrid": grid, "showline": line, "showticklabels": label, "tickcolor": color1,
+                                "range": [range2[0], range2[1]], "ticklen": length, "tickwidth": width,
+                                "title": {"text": f"Number of Practitioners", "font": {"family": axes_font, "color": color2}
+                                          }, "overlaying": 'y', "side": 'right'})
 
-    return {"data": [trace1, trace2], "layout": layout}
+    return {"data": [trace1, trace2], "layout": layout1}

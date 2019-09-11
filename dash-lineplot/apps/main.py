@@ -44,13 +44,13 @@ layout = html.Div([html.Div([html.H1("Weather Records for Seattle")], style={'te
 @app.callback(
     Output('my-graph', 'figure'),
     [Input('selected-value', 'value'), Input('year-range', 'value')])
-def update_figure(selected, year):
+def update_figure(selected_name, year):
     text = {"Max_TemperatureC": "Maximum Temperature", "Mean_TemperatureC": "Mean Temperature",
             "Min_TemperatureC": "Minimum Temperature"}
     dff = df[(df["year"] >= year[0]) & (df["year"] <= year[1])]
     trace = []
-    for type in selected:
-        trace.append(go.Scatter(x=dff["Date"], y=dff[type], name=text[type], mode='lines',
+    for name in selected_name:
+        trace.append(go.Scatter(x=dff["Date"], y=dff[type], name=text[name], mode='lines',
                                 marker={'size': 8, "opacity": 0.6, "line": {'width': 0.5}}, ))
     return {"data": trace,
             "layout": go.Layout(title="Temperature Variations Over Time", colorway=['#fdae61', '#abd9e9', '#2c7bb6'],
