@@ -29,6 +29,7 @@ layout = html.Div([
     html.Div([dcc.Graph(id='my-graph')], className="row")
 ], className="container")
 
+
 @app.callback(
     dash.dependencies.Output('my-graph', 'figure'),
     [dash.dependencies.Input('chart-type', 'value')])

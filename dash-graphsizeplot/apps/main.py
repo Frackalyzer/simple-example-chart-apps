@@ -15,8 +15,8 @@ else:
     app_name = 'dash-graphsizeplot'
 
 layout = html.Div([html.Div([html.H1("AIDS statistics over time")], style={'textAlign': "center"}),
-                       html.Div([dcc.Dropdown(id="selected-type", multi=True, value=['AIDS-related deaths'],
-                                              options=[
+                   html.Div([dcc.Dropdown(id="selected-type", multi=True, value=['AIDS-related deaths'],
+                                          options=[
                                                   {"label": "Death", "value": 'AIDS-related deaths'},
                                                   {"label": "Receiving ART",
                                                    "value": 'Coverage of people receiving ART'},
@@ -28,20 +28,17 @@ layout = html.Div([html.Div([html.H1("AIDS statistics over time")], style={'text
                                                   {"label": "Pregnant women received ART",
                                                    "value": 'Pregnant women who received ARV for preventing MTCT'}
                                               ], )],
-                                style={"display": "block", "margin-left": "auto", "margin-right": "auto",
-                                       "width": "60%", }),
-                       html.Div([dcc.Graph(id="my-graph",
-                                           style={"display": "block", "margin-left": "auto", "margin-right": "auto",
-                                                  "width": "100%"})]),
-                       html.Div([html.Span("Slide to change graphsize", style={"text-align": "center", 'padding': 10},
-                                           className="row"),
-                                 dcc.Slider(id="graph-size", min=200, max=900, value=450, step=5, updatemode="drag",
-                                            marks={200: "200px", 300: "300px", 400: "400px", 500: "500px", 600: "600px",
-                                                   700: "700px", 800: "800px", 900: "900px", },
-                                            className="row")],
-                                style={"display": "block", "margin-left": "auto", "margin-right": "auto",
-                                       "width": "40%", "padding": 20})
-                       ], className="container")
+                            style={"display": "block", "margin-left": "auto", "margin-right": "auto", "width": "60%", }),
+                   html.Div([dcc.Graph(id="my-graph",
+                                       style={"display": "block", "margin-left": "auto", "margin-right": "auto", "width": "100%"})]),
+                   html.Div([html.Span("Slide to change graphsize", style={"text-align": "center", 'padding': 10},
+                                       className="row"),
+                             dcc.Slider(id="graph-size", min=200, max=900, value=450, step=5, updatemode="drag",
+                                        marks={200: "200px", 300: "300px", 400: "400px", 500: "500px", 600: "600px",
+                                               700: "700px", 800: "800px", 900: "900px", },
+                                        className="row")],
+                            style={"display": "block", "margin-left": "auto", "margin-right": "auto", "width": "40%", "padding": 20})
+                   ], className="container")
 
 
 @app.callback(

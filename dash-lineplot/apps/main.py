@@ -21,19 +21,24 @@ else:
 
 
 layout = html.Div([html.Div([html.H1("Weather Records for Seattle")], style={'textAlign': "center"}),
-                       html.Div([dcc.Dropdown(id="selected-value", multi=True, value=["Mean_TemperatureC"],
-                                              options=[{"label": "Maximum Temperature", "value": "Max_TemperatureC"},
-                                                       {"label": "Mean Temperature", "value": "Mean_TemperatureC"},
-                                                       {"label": "Minimum Temperature", "value": "Min_TemperatureC"}])],
-                                className="row", style={"display": "block", "width": "60%", "margin-left": "auto",
-                                                        "margin-right": "auto"}),
-                       html.Div([dcc.Graph(id="my-graph")]),
-                       html.Div([dcc.RangeSlider(id="year-range", min=1948, max=2015, step=1, value=[1998, 2000],
-                                                 marks={"1948": str(1948), "1954": str(1954), "1966": str(1966),
-                                                        "1975": str(1975), "1983": str(1983), "1994": str(1994),
-                                                        "2000": str(2000), "2005": str(2005), "2010": str(2010),
-                                                        "2012": str(2012), "2015": str(2015)})])
-                       ], className="container")
+                   html.Div([dcc.Dropdown(id="selected-value", multi=True, value=["Mean_TemperatureC"],
+                                          options=[
+                                                   {"label": "Maximum Temperature", "value": "Max_TemperatureC"},
+                                                   {"label": "Mean Temperature", "value": "Mean_TemperatureC"},
+                                                   {"label": "Minimum Temperature", "value": "Min_TemperatureC"}
+                                                  ]
+                                          )
+                             ],
+                            className="row", style={"display": "block", "width": "60%", "margin-left": "auto",
+                                                    "margin-right": "auto"}),
+                   html.Div([dcc.Graph(id="my-graph")
+                             ]),
+                   html.Div([dcc.RangeSlider(id="year-range", min=1948, max=2015, step=1, value=[1998, 2000],
+                                             marks={"1948": str(1948), "1954": str(1954), "1966": str(1966),
+                                                    "1975": str(1975), "1983": str(1983), "1994": str(1994),
+                                                    "2000": str(2000), "2005": str(2005), "2010": str(2010),
+                                                    "2012": str(2012), "2015": str(2015)})])
+                   ], className="container")
 
 
 @app.callback(

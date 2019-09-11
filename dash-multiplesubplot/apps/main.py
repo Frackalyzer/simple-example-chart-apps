@@ -97,9 +97,9 @@ def update_graph(selected1, selected2, selected_box_y, selected_box_x, selected_
             "qsec": "1/4 mile time (qsec)", "wt": "Weight (1000 lbs)", "hp": "Gross horsepower (hp)"}
     return {"data": trace,
             "layout": go.Layout(height=850, width=1000, annotations=[
-                {"x": 0.07, "y": 1, "xref": "paper", "yref": "paper","font": {"size": 12},
+                {"x": 0.07, "y": 1, "xref": "paper", "yref": "paper", "font": {"size": 12},
                  "text": f'{text[selected2].title()} vs {text[selected1].title()}', "showarrow": False},
-                {"x": 0.85, "y": 1, "xref": "paper", "yref": "paper","showarrow": False, "font": {"size": 12},
+                {"x": 0.85, "y": 1, "xref": "paper", "yref": "paper", "showarrow": False, "font": {"size": 12},
                  "text": f'{text[selected_box_y].title()} vs 'f'{"Transmission" if selected_box_x == "am" else "Engine Type"}'},
                 {"x": 0.5, "y": 0.45, "xref": "paper", "yref": "paper",
                  "text": f'{text[selected_bar_y].title()} Vs Car Model', "showarrow": False, "font": {"size": 15}}],

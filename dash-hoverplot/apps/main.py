@@ -65,7 +65,7 @@ def update_graph(state, year, text, format):
                        yaxis={"title": "Concentrations of PM2.5 (micrograms/cu.m)", "hoverformat": format},
                        xaxis={"title": "County Names"})
     figure = {"data": [trace], "layout": layout}
-    if text == True:
+    if text:
         # noinspection PyTypeChecker
         trace.update(go.Scatter(hoverinfo='x + y'))
         # noinspection PyTypeChecker

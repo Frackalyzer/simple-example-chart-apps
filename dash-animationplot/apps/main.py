@@ -20,11 +20,11 @@ else:
     app_name = 'dash-animationplot'
 
 layout = html.Div([
-    html.Div([html.H1("Animation Plot")],style={'textAlign': "center"}),
-    html.Div([dcc.Graph(id="my-graph"),dcc.Interval(id='interval-component',interval=800,n_intervals=0, disabled=True),]),
+    html.Div([html.H1("Animation Plot")], style={'textAlign': "center"}),
+    html.Div([dcc.Graph(id="my-graph"), dcc.Interval(id='interval-component', interval=800, n_intervals=0, disabled=True), ]),
     html.Div([html.Button(id='play-button', children="Play", className="six columns", n_clicks=0),
-              html.Button(id='stop-button', children="Stop", className="six columns", n_clicks=0)],className="row",
-             style={"width": "40%", "margin-left": "auto", "margin-right": "auto","display": "block",})
+              html.Button(id='stop-button', children="Stop", className="six columns", n_clicks=0)], className="row",
+             style={"width": "40%", "margin-left": "auto", "margin-right": "auto", "display": "block", })
 ], className="container")
 
 
@@ -34,21 +34,21 @@ layout = html.Div([
     [Input('interval-component', 'n_intervals'),
      Input("play-button", 'n_clicks'), Input('stop-button', 'n_clicks')],
 )
-def update_figure(interval,play,stop):
+def update_figure(interval, play, stop):
     dff = df[df['Indicator'] == "AIDS-related deaths"]
     ctx = dash.callback_context
-    trace = [go.Scatter(x=dff['Time Period'],y=dff['Data Value'],mode='lines',name="No of Deaths",
+    trace = [go.Scatter(x=dff['Time Period'], y=dff['Data Value'], mode='lines', name="No of Deaths",
                         marker={"color": "#4daf4a"})]
 
     figure = {"data": trace,
-              "layout": go.Layout(title="AIDS Related Deaths",height=600,showlegend=False,
-                                  xaxis={"title": "Date"},yaxis={ "title": "AIDS Related Deaths (Number) ",
-                                                                  "range": [50, 500000],},hovermode="closest",),}
-    trace.append(go.Scatter(x=[dff['Time Period'][interval]],y=[dff['Data Value'][interval]],mode='markers',
-                            name="Animation trace",marker={"size": 25, "color": "#e41a1c", "symbol": "star-triangle-up"}))
+              "layout": go.Layout(title="AIDS Related Deaths", height=600, showlegend=False,
+                                  xaxis={"title": "Date"}, yaxis={"title": "AIDS Related Deaths (Number) ",
+                                                                  "range": [50, 500000], }, hovermode="closest",), }
+    trace.append(go.Scatter(x=[dff['Time Period'][interval]], y=[dff['Data Value'][interval]], mode='markers',
+                            name="Animation trace", marker={"size": 25, "color": "#e41a1c", "symbol": "star-triangle-up"}))
     if ctx.triggered[0]['prop_id'].split('.')[0] == 'play-button' and ctx.triggered[0]['prop_id'].split('.')[0] == 'interval-component':
         disable = False
-    elif ctx.triggered[0]['prop_id'].split('.')[0] == 'stop-button' or interval >= 25 :
+    elif ctx.triggered[0]['prop_id'].split('.')[0] == 'stop-button' or interval >= 25:
         disable = True
     elif play == 0 and stop == 0:
         disable = True

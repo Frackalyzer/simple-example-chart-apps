@@ -19,7 +19,7 @@ else:
 layout = html.Div([
     html.Div([html.H1("NHL Entry Draft 2013")], className="row", style={'textAlign': "center"}),
     html.Div([html.Span("Criteria to compare", style={'textAlign': "center", "display": "block"}),
-              dcc.Dropdown(id='column-selected',multi=True, value=['Height'],
+              dcc.Dropdown(id='column-selected', multi=True, value=['Height'],
                            options=[{"label": i, 'value': i} for i in df.columns[1:5].append(df.columns[8:14])],
                            style={"display": "block", "margin-left": "auto", "margin-right": "auto", "width": "60%"})
               ], className="row", style={"padding": 10}),

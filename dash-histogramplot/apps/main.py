@@ -27,7 +27,7 @@ layout = html.Div(
      html.Div([
          dcc.RadioItems(id="select-survival", value=str(1), labelStyle={'display': 'inline-block', 'padding': 10},
                         options=[{'label': "Survived", 'value': str(1)}, {'label': "Dead", 'value': str(0)}], )],
-         style={'textAlign': "center", }),
+              style={'textAlign': "center", }),
      html.Div([html.Div([dcc.Graph(id="scatter-graph", hoverData={'points': [{'customdata': '30'}]})],
                         className="six columns"),
                html.Div([dcc.Graph(id="hist-graph", clear_on_unhover=True, )], className="six columns"), ]),

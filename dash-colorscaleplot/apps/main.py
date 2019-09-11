@@ -37,17 +37,18 @@ layout = html.Div([
 
 ], className="container")
 
+
 @app.callback(
     Output('my-graph', 'figure'),
-    [Input('selected-city', 'value'),Input('selected-color', 'value')])
+    [Input('selected-city', 'value'), Input('selected-color', 'value')])
 def update_figure(selected, selected_color):
-    trace = (go.Scatter(x=df["DATE"],y=df[selected],name=selected,mode='markers',line={'width': 4},
-                        marker={'size': 8,'cmax': 250,'cmin': 0,'color': df[selected].values.tolist(),
-                                'colorscale': selected_color, "colorbar": {"title": 'Rainfall',"titleside": 'top',
-                                                                           "tickmode": 'array',"tickvals": [0, 125, 250],
+    trace = (go.Scatter(x=df["DATE"], y=df[selected], name=selected, mode='markers', line={'width': 4},
+                        marker={'size': 8, 'cmax': 250, 'cmin': 0, 'color': df[selected].values.tolist(),
+                                'colorscale': selected_color, "colorbar": {"title": 'Rainfall', "titleside": 'top',
+                                                                           "tickmode": 'array', "tickvals": [0, 125, 250],
                                                                            "ticktext": ['Light', 'Moderate', 'Heavy'],
                                                                            "ticks": 'outside'}},))
     return {"data": [trace],
-            "layout": go.Layout(title=f'Rainfall for {selected} Over Time',xaxis={"title": "Date"},
-                                yaxis={"title": "Rainfall (mm)","range": [0, 350],"showline": True},
-                                font={"color": "#ffffff"},paper_bgcolor="#000000",plot_bgcolor="#000000")}
+            "layout": go.Layout(title=f'Rainfall for {selected} Over Time', xaxis={"title": "Date"},
+                                yaxis={"title": "Rainfall (mm)", "range": [0, 350], "showline": True},
+                                font={"color": "#ffffff"}, paper_bgcolor="#000000", plot_bgcolor="#000000")}

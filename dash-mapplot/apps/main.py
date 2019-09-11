@@ -21,17 +21,19 @@ df_flight_paths = pd.read_csv(
     'https://raw.githubusercontent.com/plotly/datasets/master/2011_february_aa_flight_paths.csv')
 
 map_list = ["Scatter Plots on Mapbox", "Choropleth Maps", "Scatter Plots on Maps", "Bubble Maps", "Lines on Maps"]
-layout = html.Div([html.Div([html.H1("Maps"), ], style={'textAlign': "center"}),
-                       html.Div([html.Span("Type of map", className="six columns",
-                                           style={'textAlign': "center", "display": "block",
-                                                  "text-decoration": "underline", "padding-top": 5}),
-                                 dcc.Dropdown(id="map-type", options=[{'label': i, 'value': i} for i in map_list],
-                                              value='Scatter Plots on Mapbox', className="six columns")],
-                                className="row",
-                                style={"display": "block", "margin-left": "auto",
-                                       "margin-right": "auto", "width": "80%", "padding-top": 10}),
-                       html.Div([dcc.Graph(id="my-graph"), ], className="row"),
-                       ], className="container")
+layout = html.Div([html.Div([html.H1("Maps"),
+                             ], style={'textAlign': "center"}),
+                   html.Div([html.Span("Type of map", className="six columns",
+                                       style={'textAlign': "center", "display": "block",
+                                              "text-decoration": "underline", "padding-top": 5}),
+                             dcc.Dropdown(id="map-type", options=[{'label': i, 'value': i} for i in map_list],
+                                          value='Scatter Plots on Mapbox', className="six columns")
+                             ],
+                            className="row",
+                            style={"display": "block", "margin-left": "auto",
+                                   "margin-right": "auto", "width": "80%", "padding-top": 10}),
+                   html.Div([dcc.Graph(id="my-graph"), ], className="row"),
+                   ], className="container")
 
 
 @app.callback(
@@ -74,7 +76,7 @@ def update_graph(type):
                                     name='Flight Count :{0} - {1}'.format(lim[0], lim[1])))
 
     layout4 = go.Layout(title=go.layout.Title(text='No of Flights For February 2011'), showlegend=True,
-                            geo=go.layout.Geo(scope='usa', projection=go.layout.geo.Projection(type='albers usa'), ))
+                        geo=go.layout.Geo(scope='usa', projection=go.layout.geo.Projection(type='albers usa'), ))
     trace = []
     for i in range(len(df_flight_paths)):
         trace.append(

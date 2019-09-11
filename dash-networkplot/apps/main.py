@@ -27,8 +27,8 @@ layout = html.Div([
     dash.dependencies.Output("my-graph", "figure"),
     [dash.dependencies.Input("nodes", "value")])
 def update_graph(n):
-    G = nx.random_geometric_graph(n, 0.15)
-    pos = nx.get_node_attributes(G, 'pos')
+    graph = nx.random_geometric_graph(n, 0.15)
+    pos = nx.get_node_attributes(graph, 'pos')
     dmin = 1
     ncenter = 0
     for n in pos:
@@ -38,9 +38,9 @@ def update_graph(n):
             ncenter = n
             dmin = d
     edge_trace = go.Scatter(x=[], y=[], line={'width': 0.5, 'color': '#888'}, hoverinfo='none', mode='lines')
-    for edge in G.edges():
-        x0, y0 = G.node[edge[0]]['pos']
-        x1, y1 = G.node[edge[1]]['pos']
+    for edge in graph.edges():
+        x0, y0 = graph.node[edge[0]]['pos']
+        x1, y1 = graph.node[edge[1]]['pos']
         edge_trace['x'] += tuple([x0, x1, None])
         edge_trace['y'] += tuple([y0, y1, None])
     node_trace = go.Scatter(x=[], y=[], text=[], mode='markers', hoverinfo='text',
@@ -49,12 +49,12 @@ def update_graph(n):
                                     'colorbar': {'thickness': 10, 'title': 'No of Connections', 'xanchor': 'left',
                                                  'titleside': 'right'},
                                     'line': {'width': 2}})
-    for node in G.nodes():
-        x, y = G.node[node]['pos']
+    for node in graph.nodes():
+        x, y = graph.node[node]['pos']
         node_trace['x'] += tuple([x])
         node_trace['y'] += tuple([y])
-    p = nx.single_source_shortest_path_length(G, ncenter)
-    for node, adjacencies in enumerate(G.adjacency()):
+    p = nx.single_source_shortest_path_length(graph, ncenter)
+    for node, adjacencies in enumerate(graph.adjacency()):
         node_trace['marker']['color'] += tuple([len(adjacencies[1])])
         node_info = 'Number of connections: ' + str(len(adjacencies[1]))
         node_trace['text'] += tuple([node_info])

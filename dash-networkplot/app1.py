@@ -6,12 +6,12 @@ import plotly.graph_objs as go
 
 # initial network graph with 200 nodes and radius=0.125
 num_nodes = 8
-edge = [('a', 'b'), (1, 2), ('e', 'd'),("a","c"),("c","d"), ("a",1), (1,"d"), ("a",2)]
-#create graph G
+edge = [('a', 'b'), (1, 2), ('e', 'd'), ("a", "c"), ("c", "d"), ("a", 1), (1, "d"), ("a", 2)]
+# create graph G
 G = nx.Graph()
-#G.add_nodes_from(node)
+# G.add_nodes_from(node)
 G.add_edges_from(edge)
-#get a x,y position for each node
+# get a x,y position for each node
 pos = nx.layout.spring_layout(G)
 edge_trace = go.Scatter(
                 x=[],
@@ -37,9 +37,9 @@ node_trace = go.Scatter(
                         'reversescale': True,
                         'color': [],
                         'size': 10,
-                        'colorbar': { 'thickness': 15,
-                                      'title': '   No of<br>node connections',
-                                      },
+                        'colorbar': {'thickness': 15,
+                                     'title': '   No of<br>node connections',
+                                     },
                         'line': {'width': 2}})
 
 for node in G.nodes():
