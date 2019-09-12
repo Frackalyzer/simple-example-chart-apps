@@ -42,7 +42,7 @@ def update_figure(selected):
 
     def title(text):
         if text == "pop":
-            return "Poplulation (million)"
+            return "Population (million)"
         elif text == "gdpPercap":
             return "GDP Per Capita (USD)"
         else:

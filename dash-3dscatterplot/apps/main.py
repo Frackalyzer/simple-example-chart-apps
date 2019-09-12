@@ -44,7 +44,7 @@ layout = html.Div([
      dash.dependencies.Input("select-zaxis", "value")]
 
 )
-def ugdate_figure(selected_x, selected_y, selected_z):
+def update_figure(selected_x, selected_y, selected_z):
     z = df[selected_z]
     trace = [go.Scatter3d(
         x=df[selected_x], y=df[selected_y], z=df[selected_z],
